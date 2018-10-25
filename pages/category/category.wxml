@@ -1,0 +1,9 @@
+<scroll-view scroll-y style="height: {{windowHeight}}" scroll-into-view="{{alpha}}">
+  <view class="picture">
+    <image class="imgClass" model="aspectFit"></image>
+  </view>
+  <view class="gank">
+    <view class="gank-list">
+    </view>
+  </view>
+</scroll-view>
