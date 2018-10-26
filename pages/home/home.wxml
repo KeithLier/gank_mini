@@ -1,0 +1,22 @@
+<!--pages/home/home.wxml-->
+
+<scroll-view scroll-y class='container'>
+  <image class='header_image' src='{{results["福利"][0].url}}' mode="aspectFill" bindtap='clickImage' data-url='{{results["福利"][0].url}}'>
+  </image>
+
+  <view class='home_list'>
+    <block wx:for='{{category}}' wx:key="item">
+      <view class='home_title' wx:if='{{item!="福利"}}'>{{item}}</view>
+      <block wx:for='{{results[item]}}' wx:key='item'>
+        <view class='item_cell' bindtap='didSelectedCell' data-item='{{item}}'>
+          <view class='cell_title'>{{item.desc}}</view>
+          <view class='cell_content'>{{item.who}}</view>
+          <view class='cell_info'>
+            <view class='info_type'>{{item.type}}</view>
+            <view class='info_time'>{{item.createdAt}}</view>
+          </view>
+        </view>
+      </block>
+    </block>
+  </view>
+</scroll-view>
