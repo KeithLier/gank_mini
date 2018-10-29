@@ -1,0 +1,9 @@
+<!--pages/history/history.wxml-->
+<scroll-view scroll-y class='container'>
+  <block wx:for="{{results}}" wx:key="{{item}}">
+    <view class="weui_cell" bindtap="didSelectedCell" data-index="{{index}}">
+      <view class="weui_cell_text"> {{item}} </view>
+      <!-- <image class="with_arrow" src="/resources/image/icon_arrow_right.png"></image>  -->
+    </view>
+  </block>
+</scroll-view>

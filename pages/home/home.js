@@ -1,4 +1,8 @@
 // pages/home/home.js
+
+var util = require('../../utils/util.js');
+var app = getApp();
+
 Page({
 
   /**
@@ -7,22 +11,37 @@ Page({
   data: {
     url: 'https://gank.io/api/today',
     category: [],
-    results: {}
+    results: {},
+    today: '',
+    day: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var today = util.formatDate(new Date());
+    this.setData({
+      today: today
+    })
     this.requestData();
   },
 
   requestData: function () {
     var that = this;
+    var day = that.data.day;
+    if(day != '') {
+      that.setData({
+        url: "https://gank.io/api/day/" + day
+      })
+    }
     var url = that.data.url;
     wx.request({
       url: url,
       success: function (res) {
+        wx.stopPullDownRefresh()
+        wx.hideNavigationBarLoading()
+        wx.hideLoading()
         var data = res.data;
         that.setData({
           category: data.category,
@@ -50,6 +69,13 @@ Page({
       urls: imageList,
     })
   },
+
+  historyClick: function () {
+    wx.navigateTo({
+      url: '../history/history',
+    })
+  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -61,7 +87,14 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    var that = this;
+    var selectDate = app.getSelectDate.selectDate;
+    if ('' == selectDate) return;
+    that.setData({
+      day: selectDate,
+      today: selectDate
+    })
+    that.requestData();
   },
 
   /**
@@ -82,7 +115,17 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
+    var that = this;
+    that.setData({
+      url: "https://gank.io/api/today",
+      newWeek: ""
+    })
+    wx.showNavigationBarLoading();
+    wx.showLoading({
+      title: '加载中…',
+    })
 
+    that.requestData();
   },
 
   /**

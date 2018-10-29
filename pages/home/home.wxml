@@ -4,6 +4,8 @@
   <image class='header_image' src='{{results["福利"][0].url}}' mode="aspectFill" bindtap='clickImage' data-url='{{results["福利"][0].url}}'>
   </image>
 
+  <view class='history_view' bindtap='historyClick'>{{today}}
+  </view>
   <view class='home_list'>
     <block wx:for='{{category}}' wx:key="item">
       <view class='home_title' wx:if='{{item!="福利"}}'>{{item}}</view>

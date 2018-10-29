@@ -25,5 +25,9 @@ App({
 
   globalData: {
     userInfo: null
+  },
+
+  getSelectDate: {
+    selectDate: ''
   }
 })
