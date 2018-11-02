@@ -1,9 +1,25 @@
-<scroll-view scroll-y style="height: {{windowHeight}}" scroll-into-view="{{alpha}}">
-  <view class="picture">
-    <image class="imgClass" model="aspectFit"></image>
-  </view>
-  <view class="gank">
-    <view class="gank-list">
-    </view>
-  </view>
-</scroll-view>
+<view class='container'>
+  <scroll-view scroll-x='true' class='tab_view' scroll-left='{{scrollLeft}}'>
+    <block wx:for='{{tabs}}' wx:key='{{item}}'>
+      <view class='tab_item {{currentTab == index ? "active" : " "}}' data-index='{{index}}' bindtap='switchNav'>{{item}}</view>
+    </block>
+  </scroll-view>
+
+  <swiper class='tab_content' current='{{currentTab}}' duration='300' bindchange='switchTab' style='height:{{contentHeight}}px'>
+    <swiper-item class='content_item' wx:for='{{tabs}}' wx:key='{{item}}'>
+      <scroll-view scroll-y='true' bindscrolltolower='loadMore' bindscrolltoupper='onPullRefresh' style='height:{{contentHeight}}px'>
+        <block wx:for='{{contents}}' wx:key='item'>
+          <view class='item_cell' bindtap='didSelectedCell' data-item='{{item}}'>
+            <view class='cell_title'>{{item.desc}}</view>
+            <view class='cell_content'>{{item.who}}</view>
+            <view class='cell_info'>
+              <view class='info_type'>{{item.type}}</view>
+              <view class='info_time'>{{item.createdAt}}</view>
+            </view>
+          </view>
+        </block>
+      </scroll-view>
+    </swiper-item>
+  </swiper>
+
+</view>

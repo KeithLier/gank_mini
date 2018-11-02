@@ -1,0 +1,96 @@
+.container {
+  width: 100%;
+  height: 100%;
+}
+
+.tab_view {
+  width: 100%;
+  height: 80rpx;
+  box-sizing: border-box;
+  overflow: hidden;
+  line-height: 80rpx;
+  background: #f7f7f7;
+  font-size: 16px;
+  white-space: nowrap;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99;
+}
+
+.tab_item {
+  padding: 0 36rpx;
+  display: inline-block;
+}
+
+.tab_item.active {
+  color: #daa520;
+  position: relative;
+}
+
+.tab_item.active:after {
+  content: "";
+  display: block;
+  height: 8rpx;
+  width: 56rpx;
+  background: #daa520;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  margin-left: -24rpx;
+  border-radius: 16rpx;
+}
+
+.tab_content {
+  width: 100%;
+}
+
+.content_item {
+  padding-top: 20rpx;
+}
+
+.item_cell {
+  padding-left: 20rpx;
+  padding-right: 20rpx;
+  border: 1rpx solid gainsboro;
+}
+
+.cell_title {
+  width: 100%;
+  font-size: 32rpx;
+  margin-top: 10rpx;
+  line-height: 40rpx;
+  word-break: break-all;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+} 
+
+.cell_content {
+  margin-top: 10rpx;
+  width: 100%;
+  color: gray;
+  font-size: 24rpx; 
+}
+
+.cell_info {
+  margin-top: 10rpx;
+  display: flex;
+  width: 100%;
+  height: 60rpx;
+  flex-direction: row;
+}
+
+.info_type {
+  width: 50%;
+  font-size: 30rpx;
+  color: gray;
+}
+
+.info_time {
+  width: 50%;
+  font-size: 24rpx;
+  color: gray;
+  text-align: right;
+}
