@@ -9,7 +9,8 @@
     <swiper-item class='content_item' wx:for='{{tabs}}' wx:key='{{item}}'>
       <scroll-view scroll-y='true' bindscrolltolower='loadMore' bindscrolltoupper='onPullRefresh' style='height:{{contentHeight}}px'>
         <block wx:for='{{contents}}' wx:key='item'>
-          <view class='item_cell' bindtap='didSelectedCell' data-item='{{item}}'>
+
+          <view wx:if='{{currentTab != 1}}' class='item_cell' bindtap='didSelectedCell' data-item='{{item}}'>
             <view class='cell_title'>{{item.desc}}</view>
             <view class='cell_content'>{{item.who}}</view>
             <view class='cell_info'>
@@ -17,6 +18,12 @@
               <view class='info_time'>{{item.createdAt}}</view>
             </view>
           </view>
+
+          <view wx:if='{{currentTab == 1}}' class='item_image' bindtap='didSelectedImage' data-url='{{item.url}}'>
+            <image class='content_image' src='{{item.url}}' mode='aspectFill'></image>
+            <text class='image_title'>{{item.desc}}</text>
+          </view>
+
         </block>
       </scroll-view>
     </swiper-item>

@@ -35,7 +35,8 @@ Page({
       return false;
     } else {
       this.setData({
-        currentTab: index
+        currentTab: index,
+        currentPage: 1
       })
     }
   },
@@ -44,7 +45,8 @@ Page({
     var that = this;
     var cur = e.detail.current;
     this.setData({
-      currentTab: cur
+      currentTab: cur,
+      currentPage: 1
     });
     that.checkColor();
     that.loadingData();
@@ -94,6 +96,45 @@ Page({
     })
   },
   
+  onPullRefresh: function() {
+    wx.showNavigationBarLoading() //在标题栏中显示加载
+    var that = this;
+    that.setData({
+      currentPage: 1,
+      // isLoadingMore: false
+    })
+    that.loadingData();
+  },
+
+  loadMore: function () {
+    var that = this;
+
+    var page = that.data.currentPage;
+    page = page + 1;
+    that.setData({
+      currentPage: page,
+      // isLoadingMore: false
+    })
+    that.loadingData();
+  },
+
+  didSelectedCell: function () {
+    wx.showToast({
+      title: '敬请期待',
+    })
+  },
+
+  didSelectedImage: function (e) {
+    var url = e.currentTarget.dataset.url;
+    var arrayObj = new Array();
+    arrayObj.push(url);
+    wx.previewImage({
+      current: url, 
+      urls: arrayObj 
+    })
+  },
+
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -127,7 +168,6 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    
   },
 
   /**
