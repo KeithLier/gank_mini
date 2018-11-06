@@ -28,7 +28,7 @@
 }
 
 .menu_view {
-    border-top: 10px solid #eee;
+  border-top: 10px solid #eee;
   width: 100%;
 }
 

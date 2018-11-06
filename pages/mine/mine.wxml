@@ -10,7 +10,7 @@
     <view wx:else>请升级微信版本</view>
   </view>
   <view class='menu_view'>
-    <view class="menu_item" wx:for="{{menus}}" wx:for-item="menu" bindtap='handleTapMiddle' data-title='{{menu.name}}'>
+    <view class="menu_item" wx:for="{{menus}}" wx:key="{{item}}" wx:for-item="menu" bindtap='handleTapMiddle' data-title='{{menu.name}}'>
       <image class="menu_icon" src=" {{menu.url}}" mode="scaleToFill" />
       <text class="menu_text">{{menu.name}}</text>
     </view>
