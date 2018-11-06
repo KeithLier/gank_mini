@@ -1,2 +1,20 @@
 <!--pages/mine/mine.wxml-->
-<text>pages/mine/mine.wxml</text>
+<view class='container'>
+  <view bindtap="bindViewTap" class="userinfo" wx:if="{{getUserInfo}}">
+    <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+    <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+  </view>
+
+  <view class="get_user_info" wx:if="{{!getUserInfo}}">
+    <button wx:if="{{canIUse}}" open-type="getUserInfo" size="mini" bindgetuserinfo="bindGetUserInfo">授权登录</button>
+    <view wx:else>请升级微信版本</view>
+  </view>
+  <view class='menu_view'>
+    <view class="menu_item" wx:for="{{menus}}" wx:for-item="menu" bindtap='handleTapMiddle' data-title='{{menu.name}}'>
+      <image class="menu_icon" src=" {{menu.url}}" mode="scaleToFill" />
+      <text class="menu_text">{{menu.name}}</text>
+    </view>
+  </view>
+
+
+</view>
