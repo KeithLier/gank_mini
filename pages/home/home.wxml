@@ -1,9 +1,19 @@
 <!--pages/home/home.wxml-->
 
 <scroll-view scroll-y class='container'>
-  <image class='header_image' src='{{results["福利"][0].url}}' mode="aspectFill" bindtap='clickImage' data-url='{{results["福利"][0].url}}'>
-  </image>
-
+  <swiper class="banner_swiper"
+    autoplay="false"
+    interval="2000.0"
+    indicator-dots="{{item.banner.length>1}}"
+    circular="true"
+    style="height:{{screenWidth}}px;"
+    >
+    <block wx:for="{{banners}}" wx:key="item">
+      <swiper-item bindtap="bannerClick" data-item="{{item}}">
+        <image class="banner_image" src="{{item.image}}" mode='aspectFit'></image>
+      </swiper-item>
+    </block>
+  </swiper>
   <view class='history_view' bindtap='historyClick'>{{today}}
   </view>
   <view class='home_list'>

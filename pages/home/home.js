@@ -10,6 +10,8 @@ Page({
    */
   data: {
     url: 'https://gank.io/api/today',
+    screenWidth: 0,
+    banners: [],
     category: [],
     results: {},
     today: '',
@@ -24,7 +26,29 @@ Page({
     this.setData({
       today: today
     })
+    var that = this;
+    wx.getSystemInfo({
+      success: function(res) {
+        that.setData({
+          screenWidth: res.windowWidth
+        });
+      }
+    });
+    this.getBanners();
     this.requestData();
+  },
+
+  getBanners: function () {
+    var that = this;
+    wx.request({
+      url: "https://gank.io/api/v2/banners",
+      success: function (res) {
+        var data = res.data.data;
+        that.setData({
+          banners: data
+        })
+      } 
+    })
   },
 
   requestData: function () {
@@ -51,6 +75,13 @@ Page({
     })
   },
 
+  bannerClick: function(e) {
+    var url = e.currentTarget.dataset.item.url;
+    wx.navigateTo({
+      url: '../webView/webView' + "?url=" + encodeURIComponent(url)
+    })
+
+  },
   /**
    * item的点击事件
    */
