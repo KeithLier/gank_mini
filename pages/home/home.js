@@ -55,6 +55,10 @@ Page({
    * item的点击事件
    */
   didSelectedCell: function (event) {
+    var url = event.currentTarget.dataset.item.url;
+    wx.navigateTo({
+      url: '../webView/webView' + "?url=" + encodeURIComponent(url)
+    })
   },
 
   /**

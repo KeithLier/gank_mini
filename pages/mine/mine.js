@@ -10,39 +10,39 @@ Page({
   data: {
     menus: [{
         "name": "all",
-        "url": '../../images/menu/all.png'
+        "url": '../../resources/images/menu/all.png'
       },
       {
         "name": "iOS",
-        "url": '../../images/menu/ios.png'
+        "url": '/resources/images/menu/ios.png'
       },
       {
         "name": "App",
-        "url": '../../images/menu/app.png'
+        "url": '/resources/images/menu/app.png'
       },
       {
         "name": "Android",
-        "url": '../../images/menu/android.png'
+        "url": '/resources/images/menu/android.png'
       },
       {
         "name": "前端",
-        "url": '../../images/menu/frontend.png'
+        "url": '/resources/images/menu/frontend.png'
       },
       {
         "name": "瞎推荐",
-        "url": '../../images/menu/recomm.png'
+        "url": '/resources/images/menu/recomm.png'
       },
       {
         "name": "拓展资源",
-        "url": '../../images/menu/resource.png'
+        "url": '/resources/images/menu/resource.png'
       },
       {
         "name": "休息视频",
-        "url": '../../images/menu/video.png'
+        "url": '/resources/images/menu/video.png'
       },
       {
         "name": "福利",
-        "url": '../../images/menu/meizi.png'
+        "url": '/resources/images/menu/meizi.png'
       }
     ],
 
