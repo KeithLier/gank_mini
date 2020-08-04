@@ -92,3 +92,34 @@
   color: gray;
   text-align: right;
 }
+
+/* 悬浮按钮 */
+.float_view {
+  right: 15px;
+  bottom: 20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 0.5px solid rgb(222, 222, 222);
+  background: white;
+  opacity: 0.8;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  position: fixed;
+}
+
+.custom_view {
+  padding-left: 4px;
+  padding-right: 4px;
+  line-height: 16px;
+}
+
+.float_text {
+  display: inline-block;
+  width: 100%;
+  font-size: 12px;
+  position: relative;
+  top: 12px;
+
+}

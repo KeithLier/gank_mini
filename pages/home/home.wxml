@@ -6,7 +6,7 @@
     interval="2000.0"
     indicator-dots="{{item.banner.length>1}}"
     circular="true"
-    style="height:{{screenWidth}}px;"
+    style="height:{{screenWidth * 3 / 4}}px;"
     >
     <block wx:for="{{banners}}" wx:key="item">
       <swiper-item bindtap="bannerClick" data-item="{{item}}">
@@ -17,9 +17,9 @@
   <view class='history_view' bindtap='historyClick'>{{today}}
   </view>
   <view class='home_list'>
-    <block wx:for='{{category}}' wx:key="item">
-      <view class='home_title' wx:if='{{item!="福利"}}'>{{item}}</view>
-      <block wx:for='{{results[item]}}' wx:key='item'>
+    <!-- <block wx:for='{{category}}' wx:key="item">
+      <view class='home_title' wx:if='{{item!="福利"}}'>{{item}}</view> -->
+      <block wx:for='{{results}}' wx:key='item'>
         <view class='item_cell' bindtap='didSelectedCell' data-item='{{item}}'>
           <view class='cell_title'>{{item.desc}}</view>
           <view class='cell_content'>{{item.who}}</view>
@@ -29,6 +29,11 @@
           </view>
         </view>
       </block>
-    </block>
+    <!-- </block> -->
   </view>
+
 </scroll-view>
+
+<button class="float_view custom_view" bindtap="getRandomData">
+  <text class="float_text">刷新</text>
+</button>

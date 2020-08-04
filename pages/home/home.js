@@ -15,7 +15,23 @@ Page({
     category: [],
     results: {},
     today: '',
-    day: ''
+    day: '',
+    categories:[
+      {
+        "name":"专题分类",
+        "category":"Article"
+      },
+      {
+        "name":"干货分类",
+        "category":"GanHuo"
+      },
+      {
+        "name":"妹子图",
+        "category":"Girl"
+      }
+    ],
+    types: []
+
   },
 
   /**
@@ -35,7 +51,7 @@ Page({
       }
     });
     this.getBanners();
-    this.requestData();
+    this.getRandomData();
   },
 
   getBanners: function () {
@@ -46,6 +62,39 @@ Page({
         var data = res.data.data;
         that.setData({
           banners: data
+        })
+      } 
+    })
+  },
+  // 获取随机20条数据
+  getRandomData: function () {
+    wx.showNavigationBarLoading();
+    wx.showLoading({
+      title: '加载中…',
+    })
+    let random = (Math.random() * 100).toFixed(0);
+    let index = random % this.data.categories.length;
+    let category = this.data.categories[index];
+    let cate = category["category"]
+    var that = this;
+    let url =  "https://gank.io/api/v2/categories/" + cate;
+    wx.request({
+      url:url,
+      success: function (res) {
+        let data = res.data.data;
+        let idx = random % data.length;
+        let item = data[idx];
+        let u = "https://gank.io/api/v2/random/category/" + cate + "/type/" + item["type"] + "/count/20"
+        wx.request({
+          url:u,
+          success: function (res) {  
+            wx.hideNavigationBarLoading()
+            wx.hideLoading()    
+            let results = res.data.data;   
+            that.setData({
+              results: results
+            })   
+          } 
         })
       } 
     })
@@ -129,7 +178,6 @@ Page({
       day: selectDate,
       today: selectDate
     })
-    that.requestData();
   },
 
   /**
@@ -155,12 +203,9 @@ Page({
       url: "https://gank.io/api/today",
       newWeek: ""
     })
-    wx.showNavigationBarLoading();
-    wx.showLoading({
-      title: '加载中…',
-    })
 
-    that.requestData();
+
+    this.getRandomData();
   },
 
   /**
